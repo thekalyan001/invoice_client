@@ -8,7 +8,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<InvoiceForm/>} />
-        <Route path="/test1" element={<InvoicePDF/>} />
+        <Route path="/invoicepdf" element={<InvoicePDF/>} />
       </Routes>
     </Router>
   );

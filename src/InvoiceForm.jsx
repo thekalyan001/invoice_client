@@ -78,7 +78,7 @@ const InvoiceForm =()=>{
         localStorage.setItem('invoiceData', JSON.stringify(formData));
   
         // Navigate to the Test1 screen
-        navigate('/test1');
+        navigate('/invoicepdf');
       } catch (error) {
         console.error('Error generating invoice:', error);
       }
