@@ -3,7 +3,10 @@ import './invoiceform.css';
 import { useNavigate } from 'react-router-dom';
 
 const InvoiceForm =()=>{
-    //structure of pdf data.
+    
+    /**
+     * @desc structure of the form data.
+     */
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         sellerDetails: { name: '', address: '', city: '', state: '', pincode: '', pan: '', gst: '' },
