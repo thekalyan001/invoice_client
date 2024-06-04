@@ -45,7 +45,7 @@ function InvoicePDF() {
 
   items.forEach((item) => {
     const netAmount = item.unitPrice * item.quantity - item.discount;
-    const taxAmount =  item.quantity * (taxType === "CGST/SGST" ? (netAmount * 0.09).toFixed(2) : (netAmount * 0.18).toFixed(2));
+    const taxAmount =  (taxType === "CGST/SGST" ? (netAmount * 0.09).toFixed(2) : (netAmount * 0.18).toFixed(2));
     const totalItemAmount = netAmount + parseFloat(taxAmount);
 
     totalTax += parseFloat(taxAmount);
@@ -149,18 +149,18 @@ const printInvoice =() => {
           {
             items.map((item, index) => {
               const netAmount = item.unitPrice * item.quantity - item.discount;
-              const taxAmount = taxType === "CGST/SGST" ? (2*netAmount * 0.09).toFixed(2) : (netAmount * 0.18).toFixed(2);
+              const taxAmount = taxType === "CGST/SGST" ? (netAmount * 0.09).toFixed(2) : (netAmount * 0.18).toFixed(2);
               const totalAmount = (netAmount+ parseFloat(taxAmount)).toFixed(2);// * (taxType === "CGST/SGST" ? 2 : 1)).toFixed(2);
 
               return (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{item.description} ({item.code})</td>
+                  <td>{item.description}</td>
                   <td>{item.unitPrice}</td>
                   <td>{item.quantity}</td>
                   <td>{item.discount}</td>
                   <td>{netAmount}</td>
-                  <td>18%</td>
+                  <td>{taxType=="CGST/SGST"?"9%":"18%"}</td>
                   <td>{taxType}</td>
                   <td>{taxAmount}</td>
                   <td>{totalAmount}</td>
