@@ -1,6 +1,6 @@
 # invoice_client
 
-git clone url
-cd project
-npm i
-npm start.
+
+>  cd invoice_client
+>  npm i <br>
+>  npm start
