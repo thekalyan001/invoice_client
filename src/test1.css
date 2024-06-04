@@ -1,0 +1,201 @@
+@media print {
+  .no-print {
+    display: none;
+  }
+}
+.no-print{
+  margin-left: 22%;
+  margin-top: 1%;
+}
+/*------------ invoice container style start */
+ 
+.invoice {
+  width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.invoice h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.invoice p {
+  text-align: center;
+  margin-top: 0;
+  font-size: 16px;
+}
+p span {
+  font-weight: bold;
+}
+/*------------ invoice container style end*/
+
+/* ---------logo and invoice name heading start*/
+.logo-taxHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.logo-taxHeading img {
+  max-height: 80px;  
+}
+
+.logo-taxHeading h1 {
+  margin: 0;
+  font-size: 24px;
+} 
+.logo-taxHeading p { 
+  font-size: 18px;
+}
+.tax-invoice-heading{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+/*--------- logo and invoice name heading end*/
+
+/* -----------sold by and billing address start*/
+.sold-by{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+}
+.sold-by p{
+  text-align: left;
+}
+.billing-address{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+}
+.billing-address p{
+  text-align: right;
+}
+/* ---------sold by and billing address end */
+
+/* pan gst style start */
+.pan-gst {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.pan-gst p {
+  margin: 2px 0; 
+}
+
+/* pan gst style end */
+
+
+/* -------shipping address start*/
+.shipping-address{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 40%;  
+  margin-left: auto; 
+  margin-top: -80px;
+}
+.shipping-address p{
+  text-align: right;
+}
+
+.order-invoice{
+  display: flex;
+  flex-direction: row; 
+  margin-left: auto; 
+  margin-top: -18px;
+}
+/* -------shipping address end*/
+
+/* -------order invoice detail start*/
+.order-num-date{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.invoice-num-date{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 40%;  
+  margin-left: auto; 
+}
+ 
+/* -------order invoice detail end*/
+
+
+
+/* section code universe */
+.section {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.section h2 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  padding-bottom: 2px;
+}
+
+.section p {
+  margin: 2px 0;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-item {
+  width: 48%;
+}
+
+
+/* ---------product list detal table start*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  font-size: 12px;
+}
+
+ 
+
+ 
+/* --------product list detail table end */
+.total-amount td{
+  font-weight: bold;
+}
+.amount-word{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0px;
+}
+.amount-word p {
+  margin: 0px;
+}
+/* -----authorize signatory */
+.signatory-class{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0;
+}
+.signatory-class img {
+  max-height: 60px;  
+}
