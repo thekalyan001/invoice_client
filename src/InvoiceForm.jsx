@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './invoiceform.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const InvoiceForm =()=>{
     
@@ -47,42 +48,60 @@ const InvoiceForm =()=>{
         setFormData({ ...formData, items });
       };
 
-    // backend api call and return the server side rendernig form
-    // const handleSubmit = async (e) => {
+
+    /**
+     *  @name : kalyan
+      * @desc : post request to backend and return the pdf and get show that pdf using window.open.
+      * @method: 0
+    */
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await axios.post('http://localhost:5000/generate-invoice', formData, { responseType: 'blob' });
+          const file = new Blob([response.data], { type: 'application/pdf' });
+          const fileURL = URL.createObjectURL(file);
+          window.open(fileURL);
+        } catch (error) {
+          console.error('Error generating invoice:', error);
+        }
+    };
+
+
+    /**
+     * @name: kalyan
+     * @desc: save to localstorgae after submssion.
+     * @method: 1
+    */
+    // const handleSubmit = (e) => {
     //   e.preventDefault();
     //   try {
-    //     const response = await axios.post('http://localhost:5000/generate-invoice', formData, {
-    //         responseType: 'blob', // Important to handle binary data
-    //     });
-    //     const url = window.URL.createObjectURL(new Blob([response.data]));
-    //     const link = document.createElement('a');
-    //     link.href = url;
-    //     link.setAttribute('download', 'invoice.pdf');
-    //     document.body.appendChild(link);
-    //     link.click();
-    //     link.remove();
-
-    //     navigate('/test1');
+    //     localStorage.setItem('invoiceData', JSON.stringify(formData));
+  
+    //     // Navigate to the Test1 screen
+    //     navigate('/invoicepdf');
     //   } catch (error) {
     //     console.error('Error generating invoice:', error);
     //   }
     // };
 
+
     /**
-      * @desc : save to localstorgae after submssion.
-    */
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      try {
-        // Store form data in localStorage
-        localStorage.setItem('invoiceData', JSON.stringify(formData));
-  
-        // Navigate to the Test1 screen
-        navigate('/invoicepdf');
-      } catch (error) {
-        console.error('Error generating invoice:', error);
-      }
-    };
+     * @name: kalyan
+     * @desc: handleSubmit will make post req and sbmit the formData to backend.
+     * @method: 2
+     */
+        
+    // const handleSubmit = async (e) => {
+    //   e.preventDefault();
+    //   try {
+    //       await axios.post('http://localhost:5000/api/invoice', formData);
+    //       console.log('Invoice data submitted');
+    //       navigate('/invoicepdf');
+    //   } catch (error) {
+    //       console.error('Error submitting invoice data', error);
+    //   }
+    // };
+    
 
     return (
         <form onSubmit={handleSubmit}>

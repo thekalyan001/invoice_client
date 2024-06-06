@@ -2,6 +2,7 @@ import React, {useEffect, useState } from 'react';
 import './invoicePDF.css';
 import { usePDF } from 'react-to-pdf';
 import numberToWords from 'number-to-words';
+import axios from 'axios';
 
 function InvoicePDF() {
 
@@ -23,8 +24,11 @@ function InvoicePDF() {
 
   
   /**
-   * @desc :Take out value from localstorage and clear.
+   * @name : kalyan
+   * @desc : Take out value from localstorage and clear.
+   * @method : 1
   */
+ 
   useEffect(() => {
     // Retrieve form data from localStorage
     const storedData = localStorage.getItem('invoiceData');
@@ -35,26 +39,50 @@ function InvoicePDF() {
   }, []);
 
 
- 
   /**
+   * @name : kalyan
+   * @desc : make get request to backend and get the data.
+   * @method : 2
+  */
+
+  // useEffect(() => {
+  //   const fetchInvoiceData = async () => {
+  //       try {
+  //           const response = await axios.get('http://localhost:5000/api/invoice');
+  //           console.log("response data: ", response.data)
+  //           setInvoiceData(response.data);
+  //       } catch (error) {
+  //           console.error('Error fetching invoice data', error);
+  //       }
+  //   };
+
+  //   fetchInvoiceData();
+  // }, []);
+
+
+
+
+
+  /**
+   * @name : kalyan
    * @desc :calculate netAmount, taxAmount, totalItemAmount  if item and taxType changes.
    */
- useEffect(() => {
-  let totalTax = 0;
-  let totalAmount = 0;
+  useEffect(() => {
+    let totalTax = 0;
+    let totalAmount = 0;
 
-  items.forEach((item) => {
-    const netAmount = item.unitPrice * item.quantity - item.discount;
-    const taxAmount =  (taxType === "CGST/SGST" ? (netAmount * 0.09).toFixed(2) : (netAmount * 0.18).toFixed(2));
-    const totalItemAmount = netAmount + parseFloat(taxAmount);
+    items.forEach((item) => {
+      const netAmount = item.unitPrice * item.quantity - item.discount;
+      const taxAmount =  (taxType === "CGST/SGST" ? (netAmount * 0.09).toFixed(2) : (netAmount * 0.18).toFixed(2));
+      const totalItemAmount = netAmount + parseFloat(taxAmount);
 
-    totalTax += parseFloat(taxAmount);
-    totalAmount += parseFloat(totalItemAmount);
-  });
+      totalTax += parseFloat(taxAmount);
+      totalAmount += parseFloat(totalItemAmount);
+    });
 
-  setTotalItemTax(totalTax.toFixed(2));
-  setTotalItemAmount(totalAmount.toFixed(2));
-}, [items, taxType]);
+    setTotalItemTax(totalTax.toFixed(2));
+    setTotalItemAmount(totalAmount.toFixed(2));
+  }, [items, taxType]);
 
 
 const { toPDF, targetRef } = usePDF({ filename: 'invoice.pdf' });
@@ -64,10 +92,11 @@ if (!invoiceData) {
 }
 
 
-const printInvoice =() => {
-  // toPDF(targetRef.current);  //generaete pdf using react-pdf but- not good looking
-  window.print();
-};
+  const printInvoice =() => {
+    // toPDF(targetRef.current);  //generaete pdf using react-pdf but- not good looking
+    window.print();
+  };
+  
   // return taxType and totalTax.
   return (
     <>
