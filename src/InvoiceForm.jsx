@@ -54,17 +54,17 @@ const InvoiceForm =()=>{
       * @desc : post request to backend and return the pdf and get show that pdf using window.open.
       * @method: 0
     */
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-          const response = await axios.post('http://localhost:5000/generate-invoice', formData, { responseType: 'blob' });
-          const file = new Blob([response.data], { type: 'application/pdf' });
-          const fileURL = URL.createObjectURL(file);
-          window.open(fileURL);
-        } catch (error) {
-          console.error('Error generating invoice:', error);
-        }
-    };
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //       const response = await axios.post('http://localhost:5000/generate-invoice', formData, { responseType: 'blob' });
+    //       const file = new Blob([response.data], { type: 'application/pdf' });
+    //       const fileURL = URL.createObjectURL(file);
+    //       window.open(fileURL);
+    //     } catch (error) {
+    //       console.error('Error generating invoice:', error);
+    //     }
+    // };
 
 
     /**
@@ -72,17 +72,17 @@ const InvoiceForm =()=>{
      * @desc: save to localstorgae after submssion.
      * @method: 1
     */
-    // const handleSubmit = (e) => {
-    //   e.preventDefault();
-    //   try {
-    //     localStorage.setItem('invoiceData', JSON.stringify(formData));
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      try {
+        localStorage.setItem('invoiceData', JSON.stringify(formData));
   
-    //     // Navigate to the Test1 screen
-    //     navigate('/invoicepdf');
-    //   } catch (error) {
-    //     console.error('Error generating invoice:', error);
-    //   }
-    // };
+        // Navigate to the Test1 screen
+        navigate('/invoicepdf');
+      } catch (error) {
+        console.error('Error generating invoice:', error);
+      }
+    };
 
 
     /**
